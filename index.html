@@ -3,28 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mano svetainė</title>
+  <title>Jūsų vardas | Fotografė</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; color: #222; }
-    header { background: #2b6cb0; color: white; padding: 60px 20px; text-align: center; }
-    section { max-width: 700px; margin: 40px auto; padding: 0 20px; }
-    footer { background: #eee; text-align: center; padding: 20px; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Georgia, serif; color: #222; background: #fafafa; }
+    header { text-align: center; padding: 70px 20px 40px; }
+    header h1 { margin: 0; font-size: 2.4rem; letter-spacing: 3px; font-weight: normal; }
+    header p { color: #777; margin-top: 10px; font-family: Arial, sans-serif; }
+    nav { text-align: center; padding-bottom: 30px; font-family: Arial, sans-serif; }
+    nav a { margin: 0 12px; color: #222; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; }
+    nav a:hover { text-decoration: underline; }
+    .galerija { max-width: 1100px; margin: 0 auto; padding: 0 20px;
+                display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+    .galerija img { width: 100%; height: 320px; object-fit: cover; cursor: pointer; display: block;
+                    transition: opacity .2s; }
+    .galerija img:hover { opacity: .85; }
+    section { max-width: 700px; margin: 70px auto; padding: 0 20px; text-align: center; line-height: 1.7; }
+    h2 { font-weight: normal; letter-spacing: 2px; }
+    footer { text-align: center; padding: 30px; color: #888; font-family: Arial, sans-serif; font-size: 0.85rem; }
+    #didelis { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92);
+               justify-content: center; align-items: center; cursor: pointer; z-index: 10; }
+    #didelis img { max-width: 92%; max-height: 92%; }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Jūsų vardas arba įmonė</h1>
-    <p>Trumpas jūsų veiklos aprašymas</p>
+    <h1>JŪSŲ VARDAS</h1>
+    <p>Fotografė · Vilnius</p>
   </header>
-  <section>
-    <h2>Apie mane</h2>
-    <p>Čia parašykite keletą sakinių apie save ir savo paslaugas.</p>
+
+  <nav>
+    <a href="#portfolio">PORTFOLIO</a>
+    <a href="#apie">APIE MANE</a>
+    <a href="#kontaktai">KONTAKTAI</a>
+  </nav>
+
+  <div class="galerija" id="portfolio">
+    <img src="foto1.jpg" alt="Nuotrauka 1" loading="lazy">
+    <img src="foto2.jpg" alt="Nuotrauka 2" loading="lazy">
+    <img src="foto3.jpg" alt="Nuotrauka 3" loading="lazy">
+    <img src="foto4.jpg" alt="Nuotrauka 4" loading="lazy">
+    <img src="foto5.jpg" alt="Nuotrauka 5" loading="lazy">
+    <img src="foto6.jpg" alt="Nuotrauka 6" loading="lazy">
+  </div>
+
+  <section id="apie">
+    <h2>APIE MANE</h2>
+    <p>Čia parašykite keletą sakinių apie save: kokią fotografiją fotografuojate
+       (portretai, vestuvės, gamta...), kiek metų patirties turite ir kuo ypatingas jūsų stilius.</p>
   </section>
-  <section>
-    <h2>Kontaktai</h2>
-    <p>El. paštas: jusu@pastas.lt</p>
-    <p>Telefonas: +370 000 00000</p>
+
+  <section id="kontaktai">
+    <h2>KONTAKTAI</h2>
+    <p>El. paštas: jusu@pastas.lt<br>
+       Telefonas: +370 000 00000<br>
+       Instagram: @jusu_vardas</p>
   </section>
-  <footer>© 2026 Jūsų vardas</footer>
+
+  <footer>© 2026 Jūsų vardas. Visos teisės saugomos.</footer>
+
+  <div id="didelis"><img src="" alt=""></div>
+
+  <script>
+    const dideliLangas = document.getElementById('didelis');
+    const dideleNuotrauka = dideliLangas.querySelector('img');
+    document.querySelectorAll('.galerija img').forEach(img => {
+      img.addEventListener('click', () => {
+        dideleNuotrauka.src = img.src;
+        dideliLangas.style.display = 'flex';
+      });
+    });
+    dideliLangas.addEventListener('click', () => dideliLangas.style.display = 'none');
+  </script>
+
 </body>
 </html>
