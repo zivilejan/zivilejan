@@ -3,79 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ŽIVILĖ JANUŠAUSKAITĖ | Fotografė</title>
+  <title>Živilė Janušauskaitė | Fotografė Vilniuje</title>
+  <meta name="description" content="Živilė Janušauskaitė – fotografė Vilniuje. Peržiūrėkite portfolio ir susisiekite dėl fotosesijos.">
+  <!-- Čia įklijuokite Google Search Console patvirtinimo eilutę -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --fonas: #efeeea;
+      --tekstas: #1f2321;
+      --blankus: #6b716d;
+      --akcentas: #4f5f55;
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: Georgia, serif; color: #222; background: #fafafa; }
-    header { text-align: center; padding: 70px 20px 40px; }
-    header h1 { margin: 0; font-size: 2.4rem; letter-spacing: 3px; font-weight: normal; }
-    header p { color: #777; margin-top: 10px; font-family: Arial, sans-serif; }
-    nav { text-align: center; padding-bottom: 30px; font-family: Arial, sans-serif; }
-    nav a { margin: 0 12px; color: #222; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; }
-    nav a:hover { text-decoration: underline; }
-    .galerija { max-width: 1100px; margin: 0 auto; padding: 0 20px;
-                display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
-    .galerija img { width: 100%; height: 320px; object-fit: cover; cursor: pointer; display: block;
-                    transition: opacity .2s; }
-    .galerija img:hover { opacity: .85; }
-    section { max-width: 700px; margin: 70px auto; padding: 0 20px; text-align: center; line-height: 1.7; }
-    h2 { font-weight: normal; letter-spacing: 2px; }
-    footer { text-align: center; padding: 30px; color: #888; font-family: Arial, sans-serif; font-size: 0.85rem; }
-    #didelis { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92);
-               justify-content: center; align-items: center; cursor: pointer; z-index: 10; }
-    #didelis img { max-width: 92%; max-height: 92%; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--fonas); color: var(--tekstas);
+      font-family: "Jost", Arial, sans-serif; font-weight: 300; line-height: 1.7;
+    }
+
+    .virsus { max-width: 1200px; margin: 0 auto; padding: 56px 28px 28px;
+              display: flex; justify-content: space-between; align-items: baseline;
+              flex-wrap: wrap; gap: 16px; }
+    .vardas { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500;
+              font-size: 1.7rem; letter-spacing: .02em; text-decoration: none; color: inherit; }
+    nav a { margin-left: 28px; color: var(--blankus); text-decoration: none; font-size: .95rem;
+            transition: color .2s; }
+    nav a:hover, nav a:focus-visible { color: var(--tekstas); }
+
+    .pradzia { max-width: 1200px; margin: 0 auto; padding: 70px 28px 60px; }
+    .pradzia h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400;
+                  font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1.05; margin: 0; max-width: 14ch;
+                  animation: pasirodo 1.1s ease both; }
+    .pradzia p { color: var(--blankus); margin: 24px 0 0; max-width: 42ch; font-size: 1.05rem;
+                 animation: pasirodo 1.1s .25s ease both; }
+    @keyframes pasirodo { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+    .galerija { max-width: 1200px; margin: 0 auto; padding: 0 28px; columns: 3; column-gap: 18px; }
+    .galerija button { display: block; width: 100%; margin: 0 0 18px; padding: 0; border: 0;
+                       background: none; cursor: zoom-in; break-inside: avoid; }
+    .galerija img { width: 100%; height: auto; display: block; transition: filter .3s; }
+    .galerija button:hover img, .galerija button:focus-visible img { filter: brightness(.9); }
+    .galerija button:focus-visible { outline: 2px solid var(--akcentas); outline-offset: 3px; }
+
+    section.tekstas { max-width: 1200px; margin: 0 auto; padding: 110px 28px 0;
+                      display: grid; grid-template-columns: 1fr 2fr; gap: 40px; }
+    section.tekstas h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400;
+                         font-size: 2rem; margin: 0; }
+    section.tekstas p { margin: 0 0 16px; max-width: 60ch; font-size: 1.05rem; }
+    section.tekstas a { color: var(--akcentas); text-underline-offset: 4px; }
+
+    footer { max-width: 1200px; margin: 0 auto; padding: 110px 28px 50px;
+             color: var(--blankus); font-size: .85rem; }
+
+    #langas { position: fixed; inset: 0; background: rgba(20,22,21,.95); display: none;
+              align-items: center; justify-content: center; z-index: 10; }
+    #langas.atidarytas { display: flex; }
+    #langas img { max-width: 90vw; max-height: 88vh; }
+    #langas button { position: absolute; background: none; border: 0; color: #f2f2ee;
+                     font-size: 2.2rem; cursor: pointer; padding: 18px; line-height: 1; }
+    #langas button:focus-visible { outline: 2px solid #f2f2ee; }
+    #uzdaryti { top: 8px; right: 12px; }
+    #atgal { left: 8px; top: 50%; transform: translateY(-50%); }
+    #pirmyn { right: 8px; top: 50%; transform: translateY(-50%); }
+
+    @media (max-width: 900px) { .galerija { columns: 2; } }
+    @media (max-width: 600px) {
+      .galerija { columns: 1; }
+      section.tekstas { grid-template-columns: 1fr; gap: 14px; padding-top: 80px; }
+      nav a { margin: 0 20px 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>ŽIVILĖ JANUŠAUSKAITĖ</h1>
-    <p>Fotografė · Vilnius</p>
-  </header>
-
-  <nav>
-    <a href="#portfolio">PORTFOLIO</a>
-    <a href="#apie">APIE MANE</a>
-    <a href="#kontaktai">KONTAKTAI</a>
-  </nav>
-
-  <div class="galerija" id="portfolio">
-    <img src="foto1.jpg" alt="Nuotrauka 1" loading="lazy">
-    <img src="foto2.jpg" alt="Nuotrauka 2" loading="lazy">
-    <img src="foto3.jpg" alt="Nuotrauka 3" loading="lazy">
-    <img src="foto4.jpg" alt="Nuotrauka 4" loading="lazy">
-    <img src="foto5.jpg" alt="Nuotrauka 5" loading="lazy">
-    <img src="foto6.jpg" alt="Nuotrauka 6" loading="lazy">
+  <div class="virsus">
+    <a class="vardas" href="#">Živilė Janušauskaitė</a>
+    <nav>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#apie">Apie mane</a>
+      <a href="#kontaktai">Kontaktai</a>
+    </nav>
   </div>
 
-  <section id="apie">
-    <h2>APIE MANE</h2>
-    <p>Čia parašykite keletą sakinių apie save: kokią fotografiją fotografuojate
-       (portretai, vestuvės, gamta...), kiek metų patirties turite ir kuo ypatingas jūsų stilius.</p>
+  <header class="pradzia">
+    <h1>Akimirkos, kurios išlieka</h1>
+    <p>Fotografė iš Vilniaus. Fotografuoju šviesą, emocijas ir tai, kas tikra.</p>
+  </header>
+
+  <main class="galerija" id="portfolio">
+    <button type="button"><img src="foto1.jpg" alt="Aprašykite nuotrauką 1" loading="lazy"></button>
+    <button type="button"><img src="foto2.jpg" alt="Aprašykite nuotrauką 2" loading="lazy"></button>
+    <button type="button"><img src="foto3.jpg" alt="Aprašykite nuotrauką 3" loading="lazy"></button>
+    <button type="button"><img src="foto4.jpg" alt="Aprašykite nuotrauką 4" loading="lazy"></button>
+    <button type="button"><img src="foto5.jpg" alt="Aprašykite nuotrauką 5" loading="lazy"></button>
+    <button type="button"><img src="foto6.jpg" alt="Aprašykite nuotrauką 6" loading="lazy"></button>
+  </main>
+
+  <section class="tekstas" id="apie">
+    <h2>Apie mane</h2>
+    <div>
+      <p>Čia parašykite 3–4 sakinius: kokią fotografiją fotografuojate, nuo kada, kuo jūsų stilius ypatingas ir kaip vyksta darbas su klientais.</p>
+    </div>
   </section>
 
-  <section id="kontaktai">
-    <h2>KONTAKTAI</h2>
-    <p>El. paštas: zivijanmail@gmail.com<br>
-       Telefonas: +370 000 00000<br>
-       Facebook: fotoknyga jums</p>
+  <section class="tekstas" id="kontaktai">
+    <h2>Kontaktai</h2>
+    <div>
+      <p>Norite fotosesijos ar turite klausimų? Parašykite, atsakysiu per dieną.</p>
+      <p>
+        <a href="mailto:zivijanmail@gmail.com">zivijanmail@gmail.com</a><br>
+        <a href="https://www.facebook.com/zivile.jan/" target="_blank" rel="noopener">Facebook: Fotoknyga jums</a>
+      </p>
+    </div>
   </section>
 
   <footer>© 2026 Živilė Janušauskaitė. Visos teisės saugomos.</footer>
 
-  <div id="didelis"><img src="" alt=""></div>
+  <div id="langas" role="dialog" aria-label="Didelė nuotrauka">
+    <button id="uzdaryti" aria-label="Uždaryti">×</button>
+    <button id="atgal" aria-label="Ankstesnė">‹</button>
+    <img src="" alt="">
+    <button id="pirmyn" aria-label="Kita">›</button>
+  </div>
 
   <script>
-    const dideliLangas = document.getElementById('didelis');
-    const dideleNuotrauka = dideliLangas.querySelector('img');
-    document.querySelectorAll('.galerija img').forEach(img => {
-      img.addEventListener('click', () => {
-        dideleNuotrauka.src = img.src;
-        dideliLangas.style.display = 'flex';
-      });
-    });
-    dideliLangas.addEventListener('click', () => dideliLangas.style.display = 'none');
-  </script>
+    const nuotraukos = [...document.querySelectorAll('.galerija img')];
+    const langas = document.getElementById('langas');
+    const didele = langas.querySelector('img');
+    let nr = 0;
 
+    function rodyti(i) {
+      nr = (i + nuotraukos.length) % nuotraukos.length;
+      didele.src = nuotraukos[nr].src;
+      didele.alt = nuotraukos[nr].alt;
+      langas.classList.add('atidarytas');
+    }
+    function uzdaryti() { langas.classList.remove('atidarytas'); }
+
+    nuotraukos.forEach((img, i) => img.parentElement.addEventListener('click', () => rodyti(i)));
+    document.getElementById('uzdaryti').onclick = uzdaryti;
+    document.getElementById('atgal').onclick = () => rodyti(nr - 1);
+    document.getElementById('pirmyn').onclick = () => rodyti(nr + 1);
+    langas.addEventListener('click', e => { if (e.target === langas) uzdaryti(); });
+    document.addEventListener('keydown', e => {
+      if (!langas.classList.contains('atidarytas')) return;
+      if (e.key === 'Escape') uzdaryti();
+      if (e.key === 'ArrowLeft') rodyti(nr - 1);
+      if (e.key === 'ArrowRight') rodyti(nr + 1);
+    });
+  </script>
 </body>
 </html>
